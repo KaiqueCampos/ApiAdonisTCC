@@ -17,7 +17,7 @@ class MedicinesSchema extends Schema {
       table.string('name').notNullable()
       table.date('initialDate').notNullable()
       table.date('finalDate').notNullable()
-      table.time('time').notNullable()
+      table.string('time').notNullable()
       table.timestamps()
     })
   }

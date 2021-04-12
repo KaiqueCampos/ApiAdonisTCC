@@ -15,21 +15,21 @@ class MedicineController {
       const user = await auth.getUser()
 
       // Request input from page
-      const { name, initialDate, finalDate} = request.all(); // info do evento
+      const { name, initialDate, finalDate, time} = request.all(); // info do evento
 
       const data = {
         user_id: user.id,
         name: name,
         initialDate: initialDate,
         finalDate: finalDate,
-        // time: time.now(),
+        time: time,
       }
 
       console.log(data)
 
       // Save user in database
-      const user_data = await Medicine.create(data);
-      return user_data
+      await Medicine.create(data);
+      return response.status(200).json()
 
     } catch (error) {
       return console.log(error)
