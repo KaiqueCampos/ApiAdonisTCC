@@ -3,6 +3,7 @@
 const User = use('App/Models/User');
 
 class AuthController {
+
   async register({ request }) {
 
     // Request input from page

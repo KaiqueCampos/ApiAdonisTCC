@@ -7,6 +7,11 @@ Route.post('/login', 'AuthController.login')
 
 // App
 Route.get('/index', 'AppController.index').middleware(["auth"])
+Route.get('/medicine', 'AppController.medicine').middleware(["auth"])
+
+//Medicines
+Route.post('/registerMedicine', 'MedicineController.register').middleware(["auth"])
+
 
 
 

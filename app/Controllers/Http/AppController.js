@@ -8,6 +8,7 @@ class AppController {
       //Get user informations
       await auth.check()
       const user = await auth.getUser()
+
       return user
 
     } catch(error){
@@ -15,6 +16,18 @@ class AppController {
     }
   }
 
+  async medicine({auth, response}) {
+    try {
+
+      //Get user informations
+      await auth.check()
+      const user = await User.all();
+      return user
+
+    } catch(error){
+      response.send(error)
+    }
+  }
 }
 
 
