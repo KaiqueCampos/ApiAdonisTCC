@@ -15,7 +15,7 @@ class MedicineController {
       const user = await auth.getUser()
 
       // Request input from page
-      const { name, initialDate, finalDate, time} = request.all(); // info do evento
+      const { name, initialDate, finalDate, time } = request.all(); // info do evento
 
       const data = {
         user_id: user.id,
@@ -35,6 +35,14 @@ class MedicineController {
       return console.log(error)
     }
 
+  }
+
+  async show({ request, auth, response }) {
+    await auth.check()
+    const user = await auth.getUser()
+
+    const medicine = await Medicine.query().where('user_id', user.id).fetch()
+    return medicine
   }
 }
 

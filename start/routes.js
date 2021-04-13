@@ -11,6 +11,8 @@ Route.get('/medicine', 'AppController.medicine').middleware(["auth"])
 
 //Medicines
 Route.post('/registerMedicine', 'MedicineController.register').middleware(["auth"])
+Route.get('/showMedicine', 'MedicineController.show').middleware(["auth"])
+
 
 
 
