@@ -8,7 +8,6 @@ class AppController {
       //Get user informations
       await auth.check()
       const user = await auth.getUser()
-
       return user
 
     } catch(error){

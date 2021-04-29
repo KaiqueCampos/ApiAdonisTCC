@@ -40,7 +40,6 @@ class MedicineController {
   async show({ request, auth, response }) {
     await auth.check()
     const user = await auth.getUser()
-
     const medicine = await Medicine.query().where('user_id', user.id).fetch()
     return medicine
   }
