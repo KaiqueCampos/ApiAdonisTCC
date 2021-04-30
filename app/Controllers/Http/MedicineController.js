@@ -9,7 +9,6 @@ class MedicineController {
   async register({ request, auth, response }) {
 
     try {
-
       // Get User information
       await auth.check()
       const user = await auth.getUser()

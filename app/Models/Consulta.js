@@ -3,10 +3,10 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class Medicine extends Model {
-  medicines() {
+class Consulta extends Model {
+  appointments() {
     return this.belongsTo('App/Models/User')
   }
 }
 
-module.exports = Medicine
+module.exports = Consulta
