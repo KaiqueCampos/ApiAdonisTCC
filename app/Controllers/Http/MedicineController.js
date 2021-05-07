@@ -2,6 +2,8 @@
 
 const User = use('App/Models/User');
 const Medicine = use('App/Models/Medicine');
+const Status = use('App/Models/Status');
+
 
 class MedicineController {
 
@@ -39,9 +41,36 @@ class MedicineController {
   async show({ request, auth, response }) {
     await auth.check()
     const user = await auth.getUser()
-    const medicine = await Medicine.query().where('user_id', user.id).fetch()
-    return medicine
+    const medicine = await Medicine.query().where('user_id', user.id).fetch();
+
+    const statusOfMedicines = await Status.query()
+      .table('statuses')
+      .select('medicines.id', 'medicines.name', 'medicines.time','medicines.initialDate', 'medicines.finalDate', 'status', 'statuses.date')
+      .innerJoin('medicines', 'medicines.id', 'statuses.medicine_id').fetch()
+
+    return [medicine, statusOfMedicines]
+}
+
+async addStatus({ request, auth, response }) {
+
+  try {
+
+    // Request input from page
+    const { medicineId, status, date } = request.all(); // info do evento
+
+    const data = {
+      medicine_id: medicineId,
+      status: status,
+      date: date,
+    }
+
+    await Status.create(data);
+    return response.status(200).json()
+
+  } catch (error) {
+    return console.log(error)
   }
+}
 }
 
 module.exports = MedicineController
