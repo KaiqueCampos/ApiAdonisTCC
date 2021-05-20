@@ -26,8 +26,6 @@ class MedicineController {
         time: time,
       }
 
-      console.log(data)
-
       // Save user in database
       await Medicine.create(data);
       return response.status(200).json()
@@ -45,32 +43,47 @@ class MedicineController {
 
     const statusOfMedicines = await Status.query()
       .table('statuses')
-      .select('medicines.id', 'medicines.name', 'medicines.time','medicines.initialDate', 'medicines.finalDate', 'status', 'statuses.date')
+      .select('medicines.id', 'medicines.name', 'medicines.time', 'medicines.initialDate', 'medicines.finalDate', 'status', 'statuses.date')
       .innerJoin('medicines', 'medicines.id', 'statuses.medicine_id').fetch()
 
     return [medicine, statusOfMedicines]
-}
-
-async addStatus({ request, auth, response }) {
-
-  try {
-
-    // Request input from page
-    const { medicineId, status, date } = request.all(); // info do evento
-
-    const data = {
-      medicine_id: medicineId,
-      status: status,
-      date: date,
-    }
-
-    await Status.create(data);
-    return response.status(200).json()
-
-  } catch (error) {
-    return console.log(error)
   }
-}
+
+  async addStatus({ request, auth, response }) {
+
+    try {
+
+      // Request input from page
+      const { medicineId, status, date } = request.all(); // info do evento
+
+      const data = {
+        medicine_id: medicineId,
+        status: status,
+        date: date,
+      }
+
+      await Status.create(data);
+      return response.status(200).json()
+
+    } catch (error) {
+      return console.log(error)
+    }
+  }
+
+  async delete({ request, auth, response }) {
+
+    try {
+      const { medicineId } = request.all();
+      await auth.check()
+      const user = await auth.getUser()
+
+      const medicine = await Medicine.query().where('id', medicineId).delete();
+      return response.status(200).json("Medicine has been deleted")
+
+    } catch (error) {
+      return console.log(error)
+    }
+  }
 }
 
 module.exports = MedicineController
