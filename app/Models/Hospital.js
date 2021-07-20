@@ -24,13 +24,9 @@ class Hospital extends Model {
     return this.belongsTo('App/Models/Hospital')
   }
 
-  tokens() {
-    return this.hasMany('App/Models/Token')
-  }
-
-  espec() {
-    return this.hasMany('App/Models/Especialidades')
-  }
+  // tokens() {
+  //   return this.hasMany('App/Models/Token')
+  // }
 }
 
 

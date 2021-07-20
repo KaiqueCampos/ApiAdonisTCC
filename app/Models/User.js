@@ -29,6 +29,10 @@ class User extends Model {
   appointments() {
     return this.hasMany('App/Models/Consulta')
   }
+
+  AppointmentReminder() {
+    return this.hasMany('App/Models/AppointmentReminder')
+  }
 }
 
 module.exports = User
