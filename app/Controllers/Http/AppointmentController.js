@@ -1,35 +1,60 @@
 'use strict'
 
+const AppointmentReminder = use('App/Models/AppointmentReminder');
+
+
 class AppointmentController {
+
   // creating and saving a new appointment
-  async store({ request, response }) {
+  async store({ request, response, auth }) {
     try {
-      // getting data passed within the request
-      const data = request.only(['date', 'time', 'specialization'])
 
-      // looking for user in database
-      const appointExists = await Appoint.findBy('data, data.date')
+      // Get User information
+      await auth.check()
+      const user = await auth.getUser()
 
-      // if appoint exists don't save
-      if (appointExists) {
-        return response
-          .status(400)
-          .send({
-            message: {
-              error: 'Appointment already booked'
-            }
-          })
+      // Get variables from front-end
+      const {
+        hospitalName,
+        specialty,
+        day,
+        time,
+        contactPhone,
+      } = request.all();
+
+      const data = {
+        user_id: user.id,
+        hospitalName: hospitalName,
+        specialty: specialty,
+        day: day,
+        time: time,
+        contactPhone: contactPhone,
+        status: 'loading'
       }
 
-      // if appointent doesn't exist, proceeds with saving him in DB
-      const data = await Appoint.create(data)
+      await AppointmentReminder.create(data);
+      return response.status(200).json()
 
-      return data
     } catch (err) {
       return response
         .status(err.status)
         .send(err)
     }
+  }
+
+  async show({ auth }) {
+    try {
+
+      await auth.check()
+      const data = AppointmentReminder.all()
+      return data
+
+    } catch (error) {
+      return response
+        .status(err.status)
+        .send(err)
+    }
+
   }
 }
 

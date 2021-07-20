@@ -17,3 +17,8 @@ Route.get('/showMedicine', 'MedicineController.show').middleware(["auth"])
 //Hospítal
 Route.post('/createHospital', 'HospitalController.store')
 Route.get('/showHospital', 'HospitalController.show')
+
+//AppointmentReminder
+Route.post('/newAppointmentReminder', 'AppointmentController.store').middleware(['auth'])
+Route.get('/showAppointmentReminders', 'AppointmentController.show')
+
