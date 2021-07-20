@@ -10,7 +10,7 @@ Route.get('/showUser', 'AuthController.show').middleware(["auth"])
 //Medicines
 Route.post('/status', 'MedicineController.addStatus').middleware(["auth"])
 Route.post('/registerMedicine', 'MedicineController.register').middleware(["auth"])
-Route.post('/deleteMedicine', 'MedicineController.delete').middleware(["auth"])
+Route.post('/deleteMedicine', 'MedicineController.delete')
 Route.get('/showMedicine', 'MedicineController.show').middleware(["auth"])
 
 
