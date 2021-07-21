@@ -56,6 +56,31 @@ class AppointmentController {
     }
 
   }
+
+  async update({ request, response, auth }) {
+
+    try {
+      // Check user and get his informations
+      await auth.check()
+
+      // Get variables from front-end
+      const { appointmentReminderId, status } = request.all();
+
+      await AppointmentReminder
+        .query()
+        .where('id', appointmentReminderId)
+        .update({ status: status })
+
+      return response.json("Os dados foram atualizados com sucesso!")
+
+
+    } catch (error) {
+
+      console.log(error)
+      return response.json("Não foi possível atualizar os dados!")
+
+    }
+  }
 }
 
 module.exports = AppointmentController

@@ -75,7 +75,7 @@ class MedicineController {
     try {
       const { medicineId } = request.all();
 
-      const medicine = await Medicine.query().where('id', medicineId).delete();
+      await Medicine.query().where('id', medicineId).delete();
       return response.status(200).json("Medicine has been deleted")
 
     } catch (error) {
