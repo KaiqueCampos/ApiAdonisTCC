@@ -21,6 +21,7 @@ Route.get('/showHospital', 'HospitalController.show')
 //AppointmentReminder
 Route.post('/newAppointmentReminder', 'AppointmentController.store').middleware(['auth'])
 Route.post('/updateAppointmentReminders', 'AppointmentController.update').middleware(['auth'])
+Route.post('/deleteAppointmentReminders', 'AppointmentController.delete').middleware(['auth'])
 Route.get('/showAppointmentReminders', 'AppointmentController.show').middleware(['auth'])
 
 

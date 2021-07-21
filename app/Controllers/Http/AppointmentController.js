@@ -81,6 +81,19 @@ class AppointmentController {
 
     }
   }
+
+  async delete({ request, response }) {
+
+    try {
+      const { appointmentReminderId } = request.all();
+
+      await AppointmentReminder.query().where('id', appointmentReminderId).delete();
+      return response.status(200).json("Lembrete de consulta deletado com sucesso!")
+
+    } catch (error) {
+      return console.log(error)
+    }
+  }
 }
 
 module.exports = AppointmentController
