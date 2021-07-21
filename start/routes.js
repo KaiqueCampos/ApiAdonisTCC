@@ -13,7 +13,6 @@ Route.post('/registerMedicine', 'MedicineController.register').middleware(["auth
 Route.post('/deleteMedicine', 'MedicineController.delete')
 Route.get('/showMedicine', 'MedicineController.show').middleware(["auth"])
 
-
 //Hospítal
 Route.post('/createHospital', 'HospitalController.store')
 Route.get('/showHospital', 'HospitalController.show')

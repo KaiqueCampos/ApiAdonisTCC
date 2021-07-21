@@ -73,7 +73,6 @@ class AppointmentController {
 
       return response.json("Os dados foram atualizados com sucesso!")
 
-
     } catch (error) {
 
       console.log(error)
