@@ -24,4 +24,9 @@ Route.post('/deleteAppointmentReminders', 'AppointmentController.delete').middle
 Route.get('/showAppointmentReminders', 'AppointmentController.show').middleware(['auth'])
 
 
+// FirstAir
+'FirstAidController'
+Route.post('/storeFirstAid', 'FirstAidController.store')
+Route.get('/showFirstAid', 'FirstAidController.show')
+
 
