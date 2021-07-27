@@ -11,7 +11,6 @@ class HospitalSchema extends Schema {
       table.varchar('latitude',30).notNullable()
       table.varchar('longitude',30).notNullable()
       table.varchar('telefone',30).notNullable()
-      // table.text('image',2000).notNullable()
       table.timestamps()
       table.string('token') // token
       table.timestamp('token_created_at') // date when token was created
