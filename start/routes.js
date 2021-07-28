@@ -25,8 +25,12 @@ Route.get('/showAppointmentReminders', 'AppointmentController.show').middleware(
 
 
 // FirstAir
-'FirstAidController'
 Route.post('/storeFirstAid', 'FirstAidController.store')
 Route.get('/showFirstAid', 'FirstAidController.show')
+
+
+// Help
+Route.post('/storeHelp', 'HelpController.store')
+Route.get('/showHelp', 'HelpController.show')
 
 
