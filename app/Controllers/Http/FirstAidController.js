@@ -9,6 +9,7 @@ class FirstAidController {
     try {
       const {
         name,
+        procedureIntroduction,
         procedure,
         videoLink,
         thumbnail
@@ -16,6 +17,7 @@ class FirstAidController {
 
       const data = {
         name: name,
+        procedureIntroduction: procedureIntroduction,
         procedure: procedure,
         videoLink: videoLink,
         thumbnail: thumbnail

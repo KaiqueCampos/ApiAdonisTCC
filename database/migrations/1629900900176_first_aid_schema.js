@@ -8,7 +8,8 @@ class FirstAidSchema extends Schema {
     this.create('first_aids', (table) => {
       table.increments()
       table.text('name', 100).notNullable().unique()
-      table.text('procedure',10000).notNullable()
+      table.text('procedureIntroduction',5000).notNullable()
+      table.text('procedure',5000).notNullable()
       table.text('videoLink',1500).notNullable()
       table.text('thumbnail',1500).notNullable()
       table.timestamps()
