@@ -12,7 +12,6 @@ class FirstAidController {
         procedureIntroduction,
         procedure,
         videoLink,
-        thumbnail
       } = request.all();
 
       const data = {
@@ -20,7 +19,6 @@ class FirstAidController {
         procedureIntroduction: procedureIntroduction,
         procedure: procedure,
         videoLink: videoLink,
-        thumbnail: thumbnail
       }
 
       await FirstAid.create(data);

@@ -13,7 +13,6 @@ module.exports = {
   |
   */
   connection: Env.get('MAIL_CONNECTION', 'smtp'),
-
   /*
   |--------------------------------------------------------------------------
   | SMTP
@@ -23,10 +22,11 @@ module.exports = {
   |
   */
   smtp: {
-    driver: 'smtp',
-    pool: false,
-    port: Env.get('SMTP_PORT'),
-    host: Env.get('SMTP_HOST'),
+    driver: 'smtp', // make sure here is as SMTP
+    pool: true,
+    // using Env (provided by Adonis) to retriev the .env variables
+    port: Env.get('MAIL_PORT'),
+    host: Env.get('MAIL_HOST'),
     secure: false,
     auth: {
       user: Env.get('MAIL_USERNAME'),

@@ -1,6 +1,8 @@
 'use strict'
 
 const User = use('App/Models/User');
+const Mail = use('Mail') // Adonis' mail
+
 
 class AuthController {
 
@@ -17,7 +19,6 @@ class AuthController {
       console.log(error)
 
     }
-
   }
 
   async login({ request, auth, response }) {
@@ -47,7 +48,7 @@ class AuthController {
       const user = await auth.getUser()
 
       // Get data from front - end
-      const {username, password, imagePerfil} = request.all()
+      const { username, password, imagePerfil } = request.all()
 
       user.username = (username === null ? user.username : username)
       user.password = (password === null ? user.password : password)

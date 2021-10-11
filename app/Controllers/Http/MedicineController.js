@@ -4,6 +4,10 @@ const User = use('App/Models/User');
 const Medicine = use('App/Models/Medicine');
 const Status = use('App/Models/Status');
 
+// import moment from 'moment';
+const moment = require('moment')
+
+
 
 class MedicineController {
 
@@ -37,9 +41,12 @@ class MedicineController {
   }
 
   async show({ request, auth, response }) {
+
+    const dateNow = moment().format('YYYY-MM-DD');
+
     await auth.check()
     const user = await auth.getUser()
-    const medicine = await Medicine.query().where('user_id', user.id).fetch();
+    const medicine = await Medicine.query().where('initialDate', '>=', dateNow, 'and', 'user_id', user.id).fetch();
 
     const statusOfMedicines = await Status.query()
       .table('statuses')

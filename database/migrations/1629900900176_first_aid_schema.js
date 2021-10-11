@@ -11,7 +11,6 @@ class FirstAidSchema extends Schema {
       table.text('procedureIntroduction',5000).notNullable()
       table.text('procedure',5000).notNullable()
       table.text('videoLink',1500).notNullable()
-      table.text('thumbnail',1500).notNullable()
       table.timestamps()
     })
   }
