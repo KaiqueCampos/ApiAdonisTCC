@@ -32,5 +32,3 @@ Route.get('/showFirstAid', 'FirstAidController.show')
 // Help
 Route.post('/storeHelp', 'HelpController.store')
 Route.get('/showHelp', 'HelpController.show')
-
-
